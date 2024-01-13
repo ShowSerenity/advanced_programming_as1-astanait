@@ -1,0 +1,30 @@
+{{define "base"}}
+<!doctype html>
+<html lang='en'>
+    <head>
+        <meta charset='utf-8'>
+        <title>{{template "title" .}} - astanaItNews</title>
+        <link rel='stylesheet' href='/static/css/main.css'>
+        <link rel='shortcut icon' href='/static/img/favicon.ico' type='image/x-icon'>
+    </head>
+    <body>
+        <header>
+            <h1><a href='/'>Astana IT University</a></h1>
+        </header>
+        <nav>
+            <a href='/'>Home</a>
+            <a href='/news/students'>Student</a>
+            <a href='/news/staff'>Staff</a>
+            <a href='/news/applicants'>Applicants</a>
+            <a href='/news/researchers'>Researchers</a>
+        </nav>
+        <main>
+            {{template "main" .}}
+        </main>
+
+        {{template "footer" .}}
+
+        <script src="/static/js/main.js" type="text/javascript"></script>
+    </body>
+</html>
+{{end}}
