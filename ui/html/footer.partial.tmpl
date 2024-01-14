@@ -1,3 +1,37 @@
 {{define "footer"}}
-<footer>Powered by <a href='https://golang.org/'>Go</a> in {{.CurrentYear}}</footer>
+<footer>
+    <div class="footer-row">
+        <div class="footer-col">
+            <h4>Contact Us</h4>
+            <ul>
+                <li><a href="#">Email: info@astanait.edu.kz</a></li>
+                <li><a href="#">Phone: +7 (7172) 645-710</a></li>
+                <li><a href="#">Address: Turkistan street, Astana 020000, Kazakhstan</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+
+            <h4>About Us</h4>
+
+            <div class="social-links">
+                <a class ="margin-p" href="#">
+                    <i class="fa-brands fa-facebook fa-spin fa-2xl" style="color: #1778F2;"></i></a>
+                <a href="#">
+                    <i class="fa-brands fa-x-twitter fa-flip fa-2xl" style="color: #000000"></i></a>
+                <a href="#">
+                    <i class="fa-brands fa-instagram fa-shake fa-2xl" style="color: #F00075;"></i></a>
+            </div>
+
+        </div>
+
+        <div class="footer-col">
+            <h4>Our Location</h4>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2505.954393764097!2d71.41574261210563!3d51.09084917160369!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x424585a605525605%3A0x4dff4a1973f7567e!2sAstana%20IT%20University!5e0!3m2!1sru!2skz!4v1705226829783!5m2!1sru!2skz" width="450" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </div>
+
+    <div class="footer-copyright">
+        &copy; {{.CurrentYear}} AITU. All rights reserved.
+    </div>
+</footer>
 {{end}}

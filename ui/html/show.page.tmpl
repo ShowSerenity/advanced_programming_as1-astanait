@@ -4,15 +4,13 @@
 
 {{define "main"}}
     {{with .News}}
-    <div class="snippet">
+    <div class="card">
         <div class="metadata">
             <strong>{{.Title}}</strong>
-            <span>#{{.ID}}</span>
         </div>
         <pre><code>{{.Content}}</code></pre>
         <div class="metadata">
             <time>Created: {{humanDate .Created}}</time>
-            <tine>Expires: {{humanDate .Expires}}</time>
         </div>
     </div>
     {{end}}

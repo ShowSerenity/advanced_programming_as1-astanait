@@ -3,24 +3,41 @@
 {{define "title"}}Home{{end}}
 
 {{define "main"}}
+    <div class="background-img">
+        <div class="background-text">
+            <div class="footer-row">
+                <div class="footer-col">
+                    <h4>University Mission</h1>
+                </div>
+                <div class="footer-col">
+                    <p>Training of highly qualified personnel and commercialization of research for the ICT sector as drivers of development in Kazakhstan</p>
+                </div>
+            </div>
+         </div>
+    </div>
+
+    <div class="container">
     <h2>Latest News</h2>
     {{if .Newses}}
-    <table>
-        <tr>
-            <th>Title</th>
-            <th>Type</th>
-            <th>Created</th>
-            <th>ID</th>
-        </tr>
-        {{range .Newses}}
-        <tr>
-            <td><a href='/news?id={{.ID}}'>{{.Title}}</a></td>
-            <td>{{.Type}}</td>
-            <td>{{humanDate .Created}}</td>
-            <td>#{{.ID}}</td>
-        </tr>
-        {{end}}
-    </table>
+        <div class="table-container">
+            <table>
+                <tr>
+                    <th>Title</th>
+                    <th>Type</th>
+                    <th>Created</th>
+                    <th>ID</th>
+                </tr>
+                {{range .Newses}}
+                <tr>
+                    <td><a href='/news?id={{.ID}}'>{{.Title}}</a></td>
+                    <td>{{.Type}}</td>
+                    <td>{{humanDate .Created}}</td>
+                    <td>#{{.ID}}</td>
+                </tr>
+                {{end}}
+            </table>
+        </div>
+    </div>
     {{else}}
         <p>There's nothing to see here... yet! Debug info: {{.}}</p>
     {{end}}
