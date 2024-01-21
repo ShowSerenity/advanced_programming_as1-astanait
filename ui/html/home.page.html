@@ -7,7 +7,7 @@
         <div class="background-text">
             <div class="footer-row">
                 <div class="footer-col">
-                    <h4>University Mission</h1>
+                    <h4>University Mission</h4>
                 </div>
                 <div class="footer-col">
                     <p>Training of highly qualified personnel and commercialization of research for the ICT sector as drivers of development in Kazakhstan</p>
@@ -16,7 +16,7 @@
          </div>
     </div>
 
-    <div class="container">
+    <div class="container-news">
     <h2>Latest News</h2>
     {{if .Newses}}
         <div class="table-container">
@@ -29,7 +29,7 @@
                 </tr>
                 {{range .Newses}}
                 <tr>
-                    <td><a href='/news?id={{.ID}}'>{{.Title}}</a></td>
+                    <td><a href='/news/{{.ID}}'>{{.Title}}</a></td>
                     <td>{{.Type}}</td>
                     <td>{{humanDate .Created}}</td>
                     <td>#{{.ID}}</td>

@@ -9,10 +9,10 @@ import (
 )
 
 func (app *application) home(w http.ResponseWriter, r *http.Request) {
-	if r.URL.Path != "/" {
+	/*if r.URL.Path != "/" {
 		app.notFound(w)
 		return
-	}
+	}*/
 
 	s, err := app.newses.Latest()
 	if err != nil {
@@ -20,12 +20,12 @@ func (app *application) home(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	app.render(w, r, "home.page.tmpl", &templateData{Newses: s})
+	app.render(w, r, "home.page.html", &templateData{Newses: s})
 
 }
 
 func (app *application) showNews(w http.ResponseWriter, r *http.Request) {
-	id, err := strconv.Atoi(r.URL.Query().Get("id"))
+	id, err := strconv.Atoi(r.URL.Query().Get(":id"))
 	if err != nil || id < 1 {
 		app.notFound(w)
 		return
@@ -41,7 +41,7 @@ func (app *application) showNews(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	app.render(w, r, "show.page.tmpl", &templateData{News: s})
+	app.render(w, r, "show.page.html", &templateData{News: s})
 }
 
 func (app *application) showStudentNews(w http.ResponseWriter, r *http.Request) {
@@ -72,16 +72,20 @@ func (app *application) showNewsByType(w http.ResponseWriter, r *http.Request, n
 		return
 	}
 
-	app.render(w, r, "news.page.tmpl", &templateData{NewsType: newsType, Newses: newsList})
+	app.render(w, r, "news.page.html", &templateData{NewsType: newsType, Newses: newsList})
+}
+
+func (app *application) createNewsForm(w http.ResponseWriter, r *http.Request) {
+	w.Write([]byte("add news..."))
 }
 
 func (app *application) createNews(w http.ResponseWriter, r *http.Request) {
-	if r.Method != http.MethodPost {
+	/*if r.Method != http.MethodPost {
 		w.Header().Set("Allow", http.MethodPost)
 
 		app.clientError(w, http.StatusMethodNotAllowed)
 		return
-	}
+	}*/
 
 	title := "0 snail"
 	content := "O snail\nClimb Mount Fuji,\nBut slowly, slowly!\n\n– Kobayashi Issa"
@@ -94,5 +98,5 @@ func (app *application) createNews(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	http.Redirect(w, r, fmt.Sprintf("/news?id=%d", id), http.StatusSeeOther)
+	http.Redirect(w, r, fmt.Sprintf("/news/%d", id), http.StatusSeeOther)
 }

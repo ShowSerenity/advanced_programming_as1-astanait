@@ -11,7 +11,7 @@ type NewsModel struct {
 }
 
 func (m *NewsModel) Insert(title, content, expires, newsType string) (int, error) {
-	stmt := `INSERT INTO snippets (title, content, created, expires, type)
+	stmt := `INSERT INTO news (title, content, created, expires, type)
 	VALUES(?, ?, UTC_TIMESTAMP(), DATE_ADD(UTC_TIMESTAMP(), INTERVAL ? DAY), ?)`
 	result, err := m.DB.Exec(stmt, title, content, expires, newsType)
 	if err != nil {
