@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"net/http"
+	"showserenity.net/astanait/pkg/forms"
 	"showserenity.net/astanait/pkg/models"
 	"strconv"
 )
@@ -76,7 +77,9 @@ func (app *application) showNewsByType(w http.ResponseWriter, r *http.Request, n
 }
 
 func (app *application) createNewsForm(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("add news..."))
+	app.render(w, r, "create.page.html", &templateData{
+		Form: forms.New(nil),
+	})
 }
 
 func (app *application) createNews(w http.ResponseWriter, r *http.Request) {
@@ -87,12 +90,24 @@ func (app *application) createNews(w http.ResponseWriter, r *http.Request) {
 		return
 	}*/
 
-	title := "0 snail"
-	content := "O snail\nClimb Mount Fuji,\nBut slowly, slowly!\n\n– Kobayashi Issa"
-	expires := "7"
-	newstype := "student"
+	err := r.ParseForm()
+	if err != nil {
+		app.clientError(w, http.StatusBadRequest)
+		return
+	}
 
-	id, err := app.newses.Insert(title, content, expires, newstype)
+	form := forms.New(r.PostForm)
+	form.Required("title", "content", "expires", "newsType")
+	form.PermittedValues("newsType", "students", "staff", "applicants", "researchers")
+	form.MaxLength("title", 100)
+	form.PermittedValues("expires", "365", "7", "1")
+
+	if !form.Valid() {
+		app.render(w, r, "create.page.html", &templateData{Form: form})
+		return
+	}
+
+	id, err := app.newses.Insert(form.Get("title"), form.Get("content"), form.Get("expires"), form.Get("newsType"))
 	if err != nil {
 		app.serverError(w, err)
 		return

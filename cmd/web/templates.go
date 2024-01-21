@@ -3,6 +3,7 @@ package main
 import (
 	"html/template"
 	"path/filepath"
+	"showserenity.net/astanait/pkg/forms"
 	"showserenity.net/astanait/pkg/models"
 	"time"
 )
@@ -10,6 +11,7 @@ import (
 type templateData struct {
 	CurrentYear int
 	NewsType    string
+	Form        *forms.Form
 	News        *models.News
 	Newses      []*models.News
 }
