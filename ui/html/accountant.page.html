@@ -1,0 +1,44 @@
+{{template "base" .}}
+
+{{define "title"}}Create a New Accountant{{end}}
+
+{{define "main"}}
+<form action='/accountant/create' method='POST'>
+    {{with .Form}}
+    <div class="wrapper">
+        <form action="">
+            <h1>Accountant Form</h1>
+            <div class="input-box">
+                <div>
+                    {{with .Errors.Get "name"}}
+                    <label class='error'>{{.}}</label>
+                    {{end}}
+                    <input type='text' name='name' value='{{.Get "name"}}' placeholder="name">
+                </div>
+                <i class="fa-solid fa-heading fa-xl" style="color: #62CB31;"></i>
+            </div>
+            <div class="input-box">
+                <div>
+                    {{with .Errors.Get "sname"}}
+                    <label class='error'>{{.}}</label>
+                    {{end}}
+                    <input type='text' name='sname' value='{{.Get "sname"}}' placeholder="sname">
+                </div>
+                <i class="fa-solid fa-heading fa-xl" style="color: #62CB31;"></i>
+            </div>
+            <div class="input-box">
+                <div>
+                    {{with .Errors.Get "age"}}
+                    <label class='error'>{{.}}</label>
+                    {{end}}
+                    <input type='number' name='age' value='{{.Get "age"}}' placeholder="age">
+                </div>
+                <i class="fa-solid fa-heading fa-xl" style="color: #62CB31;"></i>
+            </div>
+
+            <input type='submit' value='Create Accountant'>
+        </form>
+    </div>
+    {{end}}
+</form>
+{{end}}

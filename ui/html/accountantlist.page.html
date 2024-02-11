@@ -1,0 +1,32 @@
+{{template "base" .}}
+
+{{define "title"}}Home{{end}}
+
+{{define "main"}}
+
+<div class="container-news">
+    <h2>Latest Accountants</h2>
+    {{if .Accountants}}
+    <div class="table-container">
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Age</th>
+                <th>ID</th>
+            </tr>
+            {{range .Accountants}}
+            <tr>
+                <td><a href='/accountant/{{.ID}}'>{{.Name}}</a></td>
+                <td>{{.Sname}}</td>
+                <td>{{.Age}}</td>
+                <td>#{{.ID}}</td>
+            </tr>
+            {{end}}
+        </table>
+    </div>
+</div>
+{{else}}
+<p>There's nothing to see here... yet! Debug info: {{.}}</p>
+{{end}}
+{{end}}

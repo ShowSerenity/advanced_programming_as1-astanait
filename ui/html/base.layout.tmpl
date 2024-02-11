@@ -33,13 +33,35 @@
                     <li class="nav-item">
                         <a class="nav-link" href='/news/researchers'>Researchers</a>
                     </li>
+                    {{if .IsAuthenticated}}
+                        <li class="nav-item">
+                            <a class="nav-link" href='/news/create'>Post News</a>
+                        </li>
+                    {{end}}
                     <li class="nav-item">
-                        <a class="nav-link" href='/news/create'>Post News</a>
+                        <a class="nav-link" href='/accountant/list'>Accountants</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href='/accountant/create'>Create Accountant</a>
+                    </li>
+                    <div>
+                        {{if .IsAuthenticated}}
+                            <form action='/user/logout' method='POST'>
+                                <input type='hidden' name='csrf_token' value='{{.CSRFToken}}'>
+                                <button>Logout</button>
+                            </form>
+                        {{else}}
+                            <a href='/user/signup'>Signup</a>
+                            <a href='/user/login'>Login</a>
+                        {{end}}
+                    </div>
                 </ul>
             </div>
         </nav>
         <main>
+            {{with .Flash}}
+            <div class='flash '>{{.}}</div>
+            {{end}}
             {{template "main" .}}
         </main>
 

@@ -4,6 +4,7 @@
 
 {{define "main"}}
 <form action='/news/create' method='POST'>
+    <input type='hidden' name='csrf_token' value='{{.CSRFToken}}'>
     {{with .Form}}
         <div class="wrapper">
             <form action="">

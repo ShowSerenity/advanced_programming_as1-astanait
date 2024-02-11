@@ -1,0 +1,13 @@
+{{template "base" .}}
+
+{{define "title"}}Accountant #{{.Accountant.ID}}{{end}}
+
+{{define "main"}}
+{{with .Accountant}}
+<div class="card">
+    <div class="metadata">
+        <strong>{{.Name}} {{.Sname}} {{.Age}} years old</strong>
+    </div>
+</div>
+{{end}}
+{{end}}
